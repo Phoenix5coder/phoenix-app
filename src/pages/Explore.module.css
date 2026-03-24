@@ -1,0 +1,100 @@
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(164, 134, 227, 0.142);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  padding: 12px 16px;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-elevated);
+  border-radius: 9999px;
+  padding: 10px 18px;
+  border: 1px solid transparent;
+  transition: all var(--transition);
+  caret-color: rgb(204, 255, 0)
+}
+
+.searchBox:focus-within { 
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+} 
+
+.searchIcon { color: var(--text-secondary); flex-shrink: 0; }
+.searchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  width: 100%;
+}
+
+.searchInput::placeholder { color: var(--text-secondary); }
+.clearBtn {
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  flex-shrink: 0;
+  padding: 2px;
+}
+
+.section { border-bottom: 8px solid var(--bg-elevated); }
+.sectionTitle { 
+  font-size: 1rem; 
+  font-weight: 800; 
+  text-align: center;   
+  background: rgba(164, 134, 227, 0.142);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.userResult {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+}
+
+.userResult:hover { background: rgba(255,255,255,0.02); }
+.userAvatar, .userAvatarPlaceholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.userAvatarPlaceholder {
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+.userDisplayName { font-weight: 700; color: var(--text-primary); }
+.userUsername { color: var(--text-secondary); font-size: 0.9rem; }
+.userBio { color: var(--text-primary); font-size: 0.9rem; margin-top: 4px; line-height: 1.4; }
+.empty, .loading { padding: 48px 24px; text-align: center; color: var(--text-secondary); }

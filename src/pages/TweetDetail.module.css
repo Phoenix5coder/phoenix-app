@@ -1,0 +1,31 @@
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.backBtn {
+  color: var(--text-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+}
+.backBtn:hover { background: var(--bg-elevated); }
+.title { font-size: 1.1rem; font-weight: 800; }
+.replyComposer { border-bottom: 8px solid var(--bg-elevated); }
+.replies {}
+.loading, .empty, .notFound {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-secondary);
+}

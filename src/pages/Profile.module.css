@@ -1,0 +1,266 @@
+.header {
+  position: sticky;
+  top: 0;
+  background: rgba(164, 134, 227, 0.142);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.backBtn {
+  color: var(--text-primary);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition);
+  flex-shrink: 0;
+}
+.backBtn:hover { background: var(--bg-elevated); }
+
+.headerName { font-size: 1.1rem; font-weight: 800; }
+.headerTweets { font-size: 0.85rem; color: var(--text-secondary); }
+
+.banner {
+  height: 180px;
+  position: relative;
+  background: var(--bg-elevated);
+  overflow: hidden;
+}
+.bannerImg { width: 100%; height: 100%; object-fit: cover; }
+.bannerPlaceholder { width: 100%; height: 100%; background: linear-gradient(135deg, #1a1f2e, #2a3040); }
+
+.bannerUpload {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  background: rgba(0,0,0,0.6);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.bannerUpload:hover { background: rgba(0,0,0,0.8); }
+
+.profileInfo {
+  padding: 12px 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.avatarRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-top: -52px;
+}
+
+.avatarWrap { position: relative; }
+
+.avatar, .avatarPlaceholder {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  border: 4px solid var(--bg);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.avatarPlaceholder {
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.avatarUpload {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0,0,0,0.7);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.editBtn, .followBtn {
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  transition: all var(--transition);
+  cursor: pointer;
+}
+.editBtn {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.editBtn:hover { 
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+} 
+
+.followBtn {
+  background: var(--text-primary);
+  color: var(--bg);
+  border: 1px solid transparent;
+}
+.followBtn:hover { 
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+} 
+
+.followBtn.following {
+  background: linear-gradient(135deg, rgb(204, 255, 0), rgb(255, 77, 0));
+  color: white;
+  border: none;
+}
+.followBtn.following:hover { 
+  background: var(--danger-dim); 
+  color: var(--text-primary
+  ); 
+  border-color: var(--danger); 
+}
+
+.editActions { display: flex; gap: 8px; }
+.cancelBtn {
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.cancelBtn:hover { 
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+} 
+
+.saveBtn {
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background: var(--text-primary);
+  color: var(--bg);
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+.saveBtn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.editForm { display: flex; flex-direction: column; gap: 12px; }
+.editField { display: flex; flex-direction: column; gap: 4px; }
+.editField label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+.editField input, .editField textarea {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 10px 12px;
+  color: var(--text-primary);
+  font-family: var(--font);
+  font-size: 0.95rem;
+  outline: none;
+  resize: vertical;
+  transition: border-color var(--transition);
+  caret-color: rgb(204, 255, 0)
+}
+.editField input:focus, .editField textarea:focus { 
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+} 
+
+.messageBtn {
+  border-radius: 9999px;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  background: transparent;
+}
+.messageBtn:hover {
+  border: 1px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+}
+
+.names { display: flex; flex-direction: column; gap: 2px; }
+.displayName { font-size: 1.15rem; font-weight: 800; }
+.username { color: var(--text-secondary); font-size: 0.95rem; }
+.bio { font-size: 0.97rem; line-height: 1.5; }
+
+.meta { display: flex; flex-wrap: wrap; gap: 12px; color: var(--text-secondary); font-size: 0.9rem; }
+.metaItem { display: flex; align-items: center; gap: 4px; }
+.metaLink { display: flex; align-items: center; gap: 4px; color: var(--accent); text-decoration: none; }
+.metaLink:hover { text-decoration: underline; }
+
+.stats { display: flex; gap: 20px; font-size: 0.9rem; color: var(--text-secondary); }
+.stats strong { color: var(--text-primary); font-weight: 700; margin-right: 2px; }
+
+.tweetsSection { min-height: 200px; }
+.loading { padding: 32px; text-align: center; color: var(--text-secondary); }
+.empty { padding: 48px 24px; text-align: center; color: var(--text-secondary); }
+.notFound { padding: 48px 24px; text-align: center; }
+.notFound h2 { font-size: 1.2rem; font-weight: 700; margin-bottom: 16px; }
+.notFound button { color: var(--accent); cursor: pointer; background: none; border: none; font-size: 0.95rem; }

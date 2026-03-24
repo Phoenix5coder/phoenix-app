@@ -1,0 +1,171 @@
+.tweet {
+  display: flex;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  cursor: pointer;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.tweet:hover { 
+border: 2px solid transparent;
+background: linear-gradient(var(--bg), var(--bg)) padding-box,
+            linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+background-size: 200% 100%;
+animation: borderSlide 4s linear infinite;
+}
+
+@keyframes borderSlide {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.avatar {
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  transition: opacity var(--transition);
+}
+.avatar:hover { opacity: 0.85; }
+
+.avatarPlaceholder {
+  border-radius: 50%;
+  background: var(--accent);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.content { flex: 1; min-width: 0; }
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-wrap: wrap;
+  margin-bottom: 2px;
+}
+
+.authorLink {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.displayName {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+}
+.displayName:hover { text-decoration: underline; }
+
+.username, .dot, .time {
+  color: var(--text-secondary);
+  font-size: 0.92rem;
+}
+
+.menuWrap {
+  position: relative;
+  margin-left: auto;
+}
+
+.menuBtn {
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  transition: all var(--transition);
+  margin: -8px;
+}
+.menuBtn:hover { background: var(--accent-dim); color: var(--accent); }
+
+.menu {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 4px);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  min-width: 160px;
+  z-index: 50;
+  overflow: hidden;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: background var(--transition);
+}
+.menuItem:hover { background: var(--bg-hover); }
+.menuItem.danger { color: var(--text-secondary); }
+.menuItem.danger:hover { 
+  color: var(--danger); 
+  background: var(--danger-dim); 
+}
+
+.replyingTo {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
+}
+
+.text {
+  font-size: 0.97rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  word-break: break-word;
+  white-space: pre-wrap;
+  margin-bottom: 10px;
+}
+
+.tweetImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  margin-bottom: 10px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  margin-left: -8px;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: all var(--transition);
+  min-width: 36px;
+}
+
+.reply:hover { color: var(--danger); background: var(--green-dim); }
+.retweet:hover { color: var(--danger); background: var(--green-dim); }
+.like:hover { color: var(--danger); background: var(--danger-dim); }
+.like.liked { color: var(--like); }
+.like.liked svg { fill: var(--like); }
+.bookmark:hover { color: var(--danger); background: var(--green-dim); }
+.bookmark.bookmarked { color: var(--accent); }
+.bookmark.bookmarked svg { fill: var(--accent); }
+.share:hover { color: var(--danger); background: var(--green-dim); }

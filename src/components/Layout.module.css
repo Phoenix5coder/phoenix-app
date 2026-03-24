@@ -1,0 +1,37 @@
+.loadingScreen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent);
+  animation: pulse 1s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1 } 50% { opacity: 0.4 } }
+
+.app {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.main {
+  flex: 1;
+  min-width: 0;
+  max-width: 600px;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  min-height: 100vh;
+}
+
+@media (max-width: 1100px) {
+  .app { max-width: 100%; }
+}
+
+@media (max-width: 700px) {
+  .main {
+    border: none;
+    padding-bottom: 60px;
+  }
+}
