@@ -70,6 +70,7 @@ animation: borderSlide 4s linear infinite;
 .menuWrap {
   position: relative;
   margin-left: auto;
+  z-index: 1;
 }
 
 .menuBtn {

@@ -123,5 +123,11 @@
   font-weight: 700;
   transition: background var(--transition), opacity var(--transition);
 }
-.submitBtn:hover:not(:disabled) { background: var(--accent-hover); }
+.submitBtn:hover:not(:disabled) { 
+  border: 2px solid transparent;
+  background: linear-gradient(var(--bg), var(--bg)) padding-box,
+              linear-gradient(90deg, rgb(204, 255, 0), rgb(255, 77, 0), rgb(204, 255, 0)) border-box;
+  background-size: 200% 100%;
+  animation: borderSlide 4s linear infinite;
+ }
 .submitBtn:disabled { opacity: 0.5; cursor: not-allowed; }

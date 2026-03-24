@@ -91,7 +91,7 @@ export default function RightSidebar() {
       )}
 
       <div className={styles.footer}>
-        <p>© 2025 X Clone • Built with React & Supabase</p>
+        <p>© 2026 Phoenix • Built with React & Supabase</p>
       </div>
     </aside>
   )

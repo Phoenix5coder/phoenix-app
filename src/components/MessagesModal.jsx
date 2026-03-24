@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { useAuth } from '../context/AuthContext'
 import { useConversations, useMessages } from '../hooks/useMessages'
 import styles from './MessagesModal.module.css'
+import { createPortal } from 'react-dom'
 
 const EMOJIS = ['❤️', '😂', '😮', '😢', '😡', '👍']
 
@@ -20,6 +21,18 @@ function Avatar({ profile, size = 36 }) {
 
 function Message({ msg, isOwn, onReact }) {
   const [showEmojis, setShowEmojis] = useState(false)
+  const hideTimeout = useRef(null)
+
+  function handleMouseEnter() {
+    clearTimeout(hideTimeout.current)
+    setShowEmojis(true)
+  }
+
+  function handleMouseLeave() {
+    hideTimeout.current = setTimeout(() => {
+      setShowEmojis(false)
+    }, 300)
+  }
 
   return (
     <div className={`${styles.messageWrap} ${isOwn ? styles.own : ''}`}>
@@ -27,8 +40,8 @@ function Message({ msg, isOwn, onReact }) {
       <div className={styles.messageBubbleWrap}>
         <div
           className={`${styles.bubble} ${isOwn ? styles.ownBubble : styles.otherBubble}`}
-          onMouseEnter={() => setShowEmojis(true)}
-          onMouseLeave={() => setShowEmojis(false)}
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
         >
           {msg.image_url && (
             <img src={msg.image_url} alt="" className={styles.messageImage} />
@@ -36,7 +49,11 @@ function Message({ msg, isOwn, onReact }) {
           {msg.content && <p className={styles.messageText}>{msg.content}</p>}
 
           {showEmojis && (
-            <div className={`${styles.emojiPicker} ${isOwn ? styles.emojiPickerLeft : styles.emojiPickerRight}`}>
+            <div
+              className={`${styles.emojiPicker} ${isOwn ? styles.emojiPickerLeft : styles.emojiPickerRight}`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={handleMouseLeave}
+            >
               {EMOJIS.map(emoji => (
                 <button
                   key={emoji}
@@ -198,7 +215,7 @@ export default function MessagesModal({ onClose, initialUser = null }) {
   const { conversations, loading } = useConversations()
   const [activeUser, setActiveUser] = useState(initialUser)
 
-  return (
+  return createPortal(
     <div className={styles.overlay} onClick={onClose}>
       <div className={styles.modal} onClick={e => e.stopPropagation()}>
         <div className={styles.modalHeader}>
@@ -245,6 +262,7 @@ export default function MessagesModal({ onClose, initialUser = null }) {
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   )
 }

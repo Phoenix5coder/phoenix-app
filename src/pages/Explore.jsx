@@ -39,7 +39,7 @@ export default function Explore() {
           <input
             className={styles.searchInput}
             type="text"
-            placeholder="Search X"
+            placeholder="Search Phoenix"
             value={query}
             onChange={handleSearch}
             onKeyDown={handleKeyDown}
