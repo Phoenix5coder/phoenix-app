@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # X Clone — Full Stack React + Supabase
 
 A full-featured X (Twitter) clone built with React and Supabase.
@@ -164,3 +165,7 @@ Some ideas for further development:
 - **Push notifications** — via Supabase Realtime + Web Push API
 - **Infinite scroll** — paginate feeds with cursor-based pagination
 - **Tweet scheduling** — store `publish_at` and process with a cron edge function
+=======
+# phoenix-app
+A full-stack Twitter/X style social media application featuring user authentication, posting, and real-time interactions built to demonstrate modern web development and security best practices.
+>>>>>>> 9a6e32f7b4cf073b8dc7f4cb9ed68d6cdf1314d1
