@@ -5,9 +5,10 @@ import TweetCard from '../components/TweetCard'
 import { useFeed } from '../hooks/useTweets'
 import styles from './Home.module.css'
 
+
 export default function Home() {
-  const { tweets, loading, refetch, setTweets } = useFeed()
-  const [tab, setTab] = useState('for-you')
+    const [tab, setTab] = useState('for-you')
+  const { tweets, loading, refetch, setTweets } = useFeed(tab)
 
   function handleNewTweet(tweet) {
     setTweets(prev => [tweet, ...prev])

@@ -2,32 +2,51 @@ import { useState, useEffect } from 'react'
 import { supabase } from '../lib/supabase'
 import { useAuth } from '../context/AuthContext'
 
-export function useFeed() {
+export function useFeed(tab = 'for-you') {
   const [tweets, setTweets] = useState([])
   const [loading, setLoading] = useState(true)
   const { user } = useAuth()
 
-  useEffect(() => { if (user) fetchFeed() }, [user])
+  useEffect(() => { if (user) fetchFeed() }, [user, tab])
 
   async function fetchFeed() {
     setLoading(true)
-    // Get IDs of people we follow + ourselves
+
     const { data: follows } = await supabase
       .from('follows')
       .select('following_id')
       .eq('follower_id', user.id)
 
-    const followingIds = [user.id, ...(follows?.map(f => f.following_id) || [])]
+    const followingIds = follows?.map(f => f.following_id) || []
 
-    const { data } = await supabase
-      .from('tweets')
-      .select(`*, profiles(*), likes(user_id), bookmarks(user_id)`)
-      .in('user_id', followingIds)
-      .is('reply_to', null)
-      .order('created_at', { ascending: false })
-      .limit(50)
+    if (tab === 'following') {
+      if (followingIds.length === 0) {
+        setTweets([])
+        setLoading(false)
+        return
+      }
 
-    setTweets(data || [])
+      const { data } = await supabase
+        .from('tweets')
+        .select('*, profiles(*), likes(user_id), bookmarks(user_id)')
+        .in('user_id', followingIds)
+        .is('reply_to', null)
+        .order('created_at', { ascending: false })
+        .limit(50)
+
+      setTweets(data || [])
+    } else {
+      const { data } = await supabase
+        .from('tweets')
+        .select('*, profiles(*), likes(user_id), bookmarks(user_id)')
+        .in('user_id', [user.id, ...followingIds])
+        .is('reply_to', null)
+        .order('created_at', { ascending: false })
+        .limit(50)
+
+      setTweets(data || [])
+    }
+
     setLoading(false)
   }
 

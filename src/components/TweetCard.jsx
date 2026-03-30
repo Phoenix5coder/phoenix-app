@@ -4,6 +4,7 @@ import { formatDistanceToNow } from 'date-fns'
 import { useAuth } from '../context/AuthContext'
 import { toggleLike, toggleBookmark, deleteTweet } from '../hooks/useTweets'
 import styles from './TweetCard.module.css'
+import ImageCarousel from './ImageCarousel'
 
 function Avatar({ profile, size = 44 }) {
   if (profile?.avatar_url) {
@@ -33,6 +34,7 @@ export default function TweetCard({ tweet, onUpdate, compact = false }) {
   async function handleLike(e) {
     e.stopPropagation()
     if (!user) return navigate('/login')
+    if (isOwner) return
     setLiked(!liked)
     setLikeCount(c => liked ? c - 1 : c + 1)
     await toggleLike(tweet.id, user.id, liked)
@@ -124,16 +126,18 @@ export default function TweetCard({ tweet, onUpdate, compact = false }) {
             <span>{tweet.replies_count || 0}</span>
           </button>
 
-          <button className={`${styles.action} ${styles.retweet}`} onClick={e => e.stopPropagation()}>
+          {/*<button className={`${styles.action} ${styles.retweet}`} onClick={e => e.stopPropagation()}>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8">
               <polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 014-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 01-4 4H3"/>
             </svg>
             <span>{tweet.retweets_count || 0}</span>
-          </button>
+          </button>*/}
 
           <button
             className={`${styles.action} ${styles.like} ${liked ? styles.liked : ''}`}
             onClick={handleLike}
+            disabled={isOwner}
+            title={isOwner ? "You can't like your own post" : "Like"}
           >
             <svg viewBox="0 0 24 24" width="18" height="18" fill={liked ? 'currentColor' : 'none'} stroke="currentColor" strokeWidth="1.8">
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
@@ -151,11 +155,11 @@ export default function TweetCard({ tweet, onUpdate, compact = false }) {
             <span>{bookmarkCount}</span>
           </button>
 
-          <button className={`${styles.action} ${styles.share}`} onClick={handleShare}>
+          {/*<button className={`${styles.action} ${styles.share}`} onClick={handleShare}>
             <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="1.8">
               <path d="M4 12v8a2 2 0 002 2h12a2 2 0 002-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
             </svg>
-          </button>
+          </button>*/}
         </div>
       </div>
     </article>

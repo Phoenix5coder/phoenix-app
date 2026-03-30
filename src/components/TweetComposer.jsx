@@ -18,7 +18,9 @@ export default function TweetComposer({ onTweet, replyTo = null, placeholder = "
     if (!file) return
     setImageFile(file)
     setImagePreview(URL.createObjectURL(file))
-  }
+    // store extra files for upload
+    setExtraFiles(Array.from(e.target.files).slice(1))
+}
 
   async function handleSubmit(e) {
     e.preventDefault()
@@ -84,7 +86,7 @@ export default function TweetComposer({ onTweet, replyTo = null, placeholder = "
               <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="1.8">
                 <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
               </svg>
-              <input ref={fileRef} type="file" accept="image/*" style={{ display: 'none' }} onChange={handleImage} />
+              <input ref={fileRef} type="file" accept="image/*" multiple style={{ display: 'none' }} onChange={handleImage} />
             </button>
           </div>
 

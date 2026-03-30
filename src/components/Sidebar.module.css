@@ -191,17 +191,33 @@
     left: 0;
     right: 0;
     width: 100%;
-    height: auto;
+    height: 56px;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
-    padding: 8px 16px;
+    padding: 0 8px;
     background: var(--bg);
     border-top: 1px solid var(--border);
     z-index: 100;
+    gap: 0;
   }
   .logo { display: none; }
   .tweetBtn { display: none; }
   .userCard { display: none; }
-  .navItem { padding: 8px; }
+  .nav {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    gap: 0;
+  }
+  .navItem {
+    padding: 8px;
+    gap: 0;
+    border-radius: 50%;
+    flex-direction: column;
+    align-items: center;
+  }
+  .label { display: none; }
+  .navItem.active::before { display: none; }
 }
