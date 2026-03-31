@@ -112,23 +112,27 @@ export default function Sidebar() {
         </span>
       </button>
 
-      {profile && (
-        <div className={styles.userCard}>
-          <Link to={`/${profile.username}`} className={styles.userInfo}>
-            {profile.avatar_url
-              ? <img src={profile.avatar_url} alt={profile.display_name} className={styles.avatar} />
-              : <div className={styles.avatarPlaceholder}>{profile.display_name[0]}</div>
-            }
-            <div className={styles.userText}>
-              <span className={styles.displayName}>{profile.display_name}</span>
-              <span className={styles.username}>@{profile.username}</span>
-            </div>
-          </Link>
-          <button className={styles.moreBtn} onClick={handleSignOut} title="Sign out">
-            <MoreIcon />
-          </button>
-        </div>
-      )}
+      {profile ? (
+      <div className={styles.userCard}>
+        <Link to={`/${profile.username}`} className={styles.userInfo}>
+          {profile.avatar_url
+            ? <img src={profile.avatar_url} alt={profile.display_name} className={styles.avatar} />
+            : <div className={styles.avatarPlaceholder}>{profile.display_name[0]}</div>
+          }
+          <div className={styles.userText}>
+            <span className={styles.displayName}>{profile.display_name}</span>
+            <span className={styles.username}>@{profile.username}</span>
+          </div>
+        </Link>
+        <button className={styles.moreBtn} onClick={handleSignOut} title="Sign out">
+          <MoreIcon />
+        </button>
+      </div>
+    ) : (
+      <Link to="/login" className={styles.tweetBtn} style={{ textDecoration: 'none', textAlign: 'center' }}>
+        Sign in
+      </Link>
+    )}
     </aside>
   )
 }
